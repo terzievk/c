@@ -50,3 +50,15 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# pdf duh
+*.pdf
+
+# The disposable executable
+f
+
+# Emacs temporary files
+*~
+
+# Emacs auto-save files
+\#*\#
