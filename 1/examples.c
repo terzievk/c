@@ -22,7 +22,7 @@ int main() {
   }
 
   if (max > 0) {
-    printf("%s", longest);
+    printf("longest: %s", longest);
   }
 
   return 0;
@@ -50,7 +50,7 @@ void copy(char to[], char from[]) {
   int i;
 
   i = 0;
-  while ((to[i] = from[i] != '\0')) {
+  while ((to[i] = from[i]) != '\0') {
     ++i;
   }
 }
