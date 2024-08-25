@@ -5,7 +5,7 @@
 #define TAB_SIZE 8    /* number of spaces in a tab */
 
 int getLine(char line[], int size);
-void entab(char newLine[], char line[]) {
+void detab(char newLine[], char line[]) {
   int count = 0;
   int len = 0;
   while (line[count] != '\0') {
@@ -28,7 +28,7 @@ int main() {
   char newLine[MAXSIZE];
 
   while (getLine(line, MAXSIZE) > 0) {
-    entab(newLine, line);
+    detab(newLine, line);
     printf("%s", newLine);
   }
   return 0;
