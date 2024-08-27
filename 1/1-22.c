@@ -1,7 +1,10 @@
 // copyright
 #include <stdio.h>
 
-#define MAX_LINE 8  /* max number of chars in a line */
+#define MAX_LINE 80  /* max number of chars in a line */
+
+#define MAX_BACK 5  // max number of chars to go back looking for a whitespace
+//                     when folding the lines
 
 int getLine(char line[], int maxLine);
 
@@ -16,25 +19,47 @@ void print(char line[]) {
     while (to - from < MAX_LINE && line[to] != '\n') {
       ++to;
     }
-    
+
     int i = 0;
     while (i < 5 && to - i > from && line[to - i] != '\n'
            && line[to - i] != ' ')  {
       ++i;
     }
-    to = to - i;
 
-    printf("from: %d, to: %d\n", from, to);
-    // print [from, to)
-    for (int i = from; i < to; ++i) {
-      printf("%c", line[i]);
+    int dash = 0;
+    int space = 0;
+    if (line[to - i] == ' ' || line[to - i] == '\n') {
+      // + 1 so you don't actually print the space itself,
+      // goto: spaceline to see where it's used
+      space = 1;
+      to = to - i;
+    } else {
+      dash = 1;
+
+      // print one less chars so there's space for the dash
+      if (dash && to > from + 1) {
+        --to;
+      }
     }
+
+    // print [from, to)
+       for (int i = from; i < to; ++i) {
+         printf("%c", line[i]);
+       }
+
+    if (dash) {
+    printf("-");
+    }
+
     printf("\n");
 
+    // end of the big line
     if (line[to] == '\n') {
       break;
     }
-    from = to;
+
+    // space-line
+    from = to + space;
   }
 }
 
