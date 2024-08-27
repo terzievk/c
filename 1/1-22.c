@@ -1,7 +1,13 @@
 // copyright
+/* to test with lorem ipsum:
+```
+   ./f < test-input/lorem-ipsum
+```
+ */
 #include <stdio.h>
 
-#define MAX_LINE 80  /* max number of chars in a line */
+#define MAX_LINE    80  /* max number of chars in a line output */
+#define MAX_LINE_IN 1000  /* max number of chars in a line input */
 
 #define MAX_BACK 5  // max number of chars to go back looking for a whitespace
 //                     when folding the lines
@@ -65,10 +71,10 @@ void print(char line[]) {
 
 
 int main() {
-  char line[MAX_LINE];
+  char line[MAX_LINE_IN];
 
   int len;
-  while ((len = getLine(line, 1000)) > 0) {
+  while ((len = getLine(line, MAX_LINE_IN)) > 0) {
     print(line);
   }
 
