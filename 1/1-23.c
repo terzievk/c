@@ -1,18 +1,34 @@
 // copyright
 #include <stdio.h>
 
-// this program is getting more and more complex, the more you think about it
-// hard to tell the sweet spot between coverage and effort
-int main() {  // doesn't handle well comments after some code like this one
+/*
+  1-23-result.c is direct result from:
+  ```
+  ./f < 1-23.c > 1-23-result.c
+  ```
+  and it compiles and can be called on itself successfully
+
+  Known issues:
+  - assume no comments in quotes 
+  - mess up mixed code + comment lines(deletes the newline) 
+  - leaves blank lines when deleting multiline comments
+*/
+int /*mid comment*/main() {
   int c;
   int previous = getchar();
+
   while ((c = getchar()) != EOF) {
     if (c == '/' && previous == '/') {
       while ((c = getchar()) != EOF && c != '\n') {
       }
-      if (c == '\n') {
-        c = getchar();
+      // if c == '\n' (once EOF, always EOF)
+      c = getchar();
+    } else if (c == '*' && previous == '/') {
+      while ((c = getchar()) != EOF && !(previous == '*' && c == '/')) {
+        previous = c;
       }
+      /* previous == * && c == / */
+      c = getchar();  // for the last / of /* ... */
     } else {
       putchar(previous);
     }
