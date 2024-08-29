@@ -67,8 +67,10 @@ int main() {
     }
     putchar(c);
   }
+
   if (empty()) {
     printf("All good!\n");
   }
+
   return 0;
 }
