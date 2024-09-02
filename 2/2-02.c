@@ -8,8 +8,8 @@
 int getLine(char line[], int maxLine);
 
 int main() {
-  int len;   /* current line length */
-  char line[MAXLINE];     /* current input line */
+  int len;    /* current line length */
+  char line[MAXLINE];    /* current input line */
 
   while ((len = getLine(line, MAXLINE)) > 0) {
     if (len > THRESHOLD) {
