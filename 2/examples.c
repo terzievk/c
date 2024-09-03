@@ -16,6 +16,10 @@ int strlen(char s[]) {
 int main() {
   char s[100] = "hello" " " "world\0";
   printf("%s: %d\n", s, strlen(s));
+  printf("%d\n", '\0');
+  printf("%d\n", 0);
+  printf("%d\n", '\0' == 0);
 
+  enum boolean {NO, YES};
   return 0;
 }
